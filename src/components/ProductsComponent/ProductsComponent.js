@@ -80,52 +80,51 @@ if(showProducts)
 
     {showProducts &&   productDataNew.map((eachProduct,index)=>{
 
-            
-return(
+        return (
           <div className='mx-5 p-3 product-card'>
-<Link to="/productdetails" state={{product:eachProduct}} >
-  
-            <div className='product-image-container'>
-                 <img src={require('../../assets/images/shop/'+  eachProduct.product_img)}/>
+            <Link to="/productdetails" state={{ product: eachProduct }} >
+
+              <div className='product-image-container'>
+                <img src={require('../../assets/images/shop/' + eachProduct.product_img)} />
 
 
-            </div>
+              </div>
 
- </Link>            
-            
+            </Link>
+
 
             <div className='product-info'>
-            <h5>
-                   <Link to="/productdetails" state={{product:eachProduct}} >{eachProduct.product_name}</Link>
-                 </h5>
- <p className='product-price'>${eachProduct.price}</p>
+              <h5>
+                <Link to="/productdetails" state={{ product: eachProduct }} >{eachProduct.product_name}</Link>
+              </h5>
+              <p className='product-price'>${eachProduct.price}</p>
               <div className='product-rating'>
-                  <FontAwesomeIcon  icon='fa fa-star' className='rating' />
-                  <FontAwesomeIcon  icon='fa fa-star' className='rating' />
-                  <FontAwesomeIcon  icon='fa fa-star' className='rating' />
-               </div>
-             <div className='my-3'onClick={()=>{addToCart(eachProduct);}}>
-              <div className='cart-button'>
-                    <div className='cart-icon-container'>
-               <FontAwesomeIcon icon="fa fa-shopping-cart" className="mx-4 cart-icon" />
-                </div>
-                <div className='cart-text-container mx-3'>
-                 <p className=''>Add to Cart </p>
+                <FontAwesomeIcon icon='fa fa-star' className='rating' />
+                <FontAwesomeIcon icon='fa fa-star' className='rating' />
+                <FontAwesomeIcon icon='fa fa-star' className='rating' />
+              </div>
+              <div className='my-3' onClick={() => { addToCart(eachProduct); }}>
+                <div className='cart-button'>
+                  <div className='cart-icon-container'>
+                    <FontAwesomeIcon icon="fa fa-shopping-cart" className="mx-4 cart-icon" />
+                  </div>
+                  <div className='cart-text-container mx-3'>
+                    <p className=''>Add to Cart </p>
+                  </div>
                 </div>
               </div>
-               </div>
 
             </div>
 
 
 
           </div>)
-   
-       })}  
-        </div>
+
+      })}
+    </div>
 
 
-    )
+  )
 
 
 
