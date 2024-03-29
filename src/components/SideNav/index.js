@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './_side-nav.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import accordionSlice from '../../Redux/Accordion/accordionSlice'
@@ -21,25 +21,24 @@ const SideNav = ({setNumberOfProducts,showProducts,setShowProducts}) => {
     
     const dispatch= useDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
 
-         dispatch(getCategories());
-
-
-    },[]);
+        dispatch(getCategories());
 
 
-    useEffect(()=>{
+    }, []);
+
+
+    useEffect(() => {
 
 
         setProducts(fetchedProductData.products)
 
-   },[fetchedProductData.status]);
+    }, [fetchedProductData.status]);
 
 
-    const filterData=(selectedCategory) =>
-    {
-        const payload ={selectedCategory,products};
+    const filterData = (selectedCategory) => {
+        const payload = { selectedCategory, products };
         dispatch(filterProducts(payload))
         console.log(products);
     }
@@ -66,7 +65,7 @@ const SideNav = ({setNumberOfProducts,showProducts,setShowProducts}) => {
         </div>
 
 
-        <div className='accordion my-3'>
+        {/* <div className='accordion my-3'>
 
         {accordionData.map((eachData)=>{
 
@@ -79,39 +78,55 @@ if(eachData.parent_category_id==null)
                 {eachData.category}
             </div>
             </button>
-            </div>
-
-            {           (accordionData.filter((eachSubCategory)=>eachData.id==eachSubCategory.parent_category_id).length>0) && <div className='accordion-collapse collapse show' id={eachData.category}>
-
-                <div className='accordion-body'>
-             
-                 <ul>
-              {
-            
-              accordionData.filter((eachSubCategory)=>eachData.id==eachSubCategory.parent_category_id).map((eachItem)=>{
-
-          return <li className='sub-items'><a href='#' onClick={()=>{filterData(eachItem)}}>{eachItem.category}</a></li>
-            
-              })}
-            
+            </div> */}
 
 
+            <div className='accordion my-3'>
 
-                 </ul>
+                {accordionData.map((eachData) => {
+
+                    if (eachData.parent_category_id == null)
+                        return (
+                            <div className='accordion-item individual-category'>
+                                <div className="accordion-header">
+                                    <button id={"but" + eachData.category} className="accordion-button" data-bs-target={'#' + eachData.category} data-bs-toggle="collapse">
+                                        <div className='category-title'>
+                                            {eachData.category}
+                                        </div>
+                                    </button>
+                                </div>
+
+                                {(accordionData.filter((eachSubCategory) => eachData.id == eachSubCategory.parent_category_id).length > 0) && <div className='accordion-collapse collapse show' id={eachData.category}>
+
+                                    <div className='accordion-body'>
+
+                                        <ul>
+                                            {
+
+                                                accordionData.filter((eachSubCategory) => eachData.id == eachSubCategory.parent_category_id).map((eachItem) => {
+
+                                                    return <li className='sub-items'><a href='#' onClick={() => { filterData(eachItem) }}>{eachItem.category}</a></li>
+
+                                                })}
 
 
 
-                </div>
-            </div>}
 
-            </div> 
-
-        )
+                                        </ul>
 
 
 
-        })}
-           {/*
+                                    </div>
+                                </div>}
+
+                            </div>
+
+                        )
+
+
+
+                })}
+                {/*
             <div className='accordion-item'>
             <div className='category-title'>
                 Women
@@ -158,19 +173,16 @@ if(eachData.parent_category_id==null)
             max={130}
             step={10} />
             </div>
-            <div>
-            <button className='btn btn-outline-dark  my-3' onClick={()=>{dispatch(filterByPrice({products:products, minPrice:minPriceLimit,maxPrice:maxPriceLimit}))}}> Apply Filter</button>
-           
+            <div className="price-filter-container">
+                <div className='section-title '>
 
-         </div>
+                    <h3> Filter by Price </h3>
 
  
                </div>
                {value => <p> The watches are  { value } </p>}
- 
-
-           
-            
+            </div>
+        </div>
     </div>
    
     
